@@ -26,7 +26,6 @@ def browseFile():
 
 #endregion
 
-
 rowText = tk.Label(window,text="Rows",font=font2)
 columnText = tk.Label(window,text="Column",font=font2)
 row = tk.Entry(window)
@@ -36,7 +35,6 @@ rowText.place(x=40,y=20)
 columnText.place(x=235,y=20)
 row.place(x=10,y=60)
 column.place(x=225,y=60)
-
 
 #region main function
 def sliceImage():
