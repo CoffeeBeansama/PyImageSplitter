@@ -15,7 +15,7 @@ font2 = ("Roboto-Medium.ttf",28)
 window = tk.Tk()
 window.title("Image Splitter")
 
-window.geometry("600x600")
+window.geometry("400x200")
 
 #region browseFile
 def browseFile():
@@ -32,10 +32,10 @@ columnText = tk.Label(window,text="Column",font=font2)
 row = tk.Entry(window)
 column = tk.Entry(window)
 
-rowText.place(x=178,y=160)
-columnText.place(x=330,y=160)
-row.place(x=150,y=200)
-column.place(x=320,y=200)
+rowText.place(x=40,y=20)
+columnText.place(x=235,y=20)
+row.place(x=10,y=60)
+column.place(x=225,y=60)
 
 
 #region main function
@@ -67,7 +67,6 @@ def sliceImage():
                         for j in textToRemove[::-1]:
                             imgFile += j
                         break
-
                 savePath = path.replace(imgFile,"")
 
                 cv2.imwrite(savePath + str(ih) + str(iw) + ".png", img)
@@ -77,6 +76,6 @@ def sliceImage():
 #endregion
 
 sliceButton = tk.Button(window,text="Browse Image",command=sliceImage)
-sliceButton.place(x=240,y=250)
+sliceButton.place(x=145,y=120)
 
 window.mainloop()
