@@ -5,7 +5,8 @@ import cv2
 import tkinter as tk
 from tkinter import filedialog
 from tkfilebrowser import askopenfilename
-
+from rembg import remove
+from PIL import Image
 
 
 font = ("Roboto-Medium.ttf",40)
@@ -46,6 +47,7 @@ def sliceImage():
         # Number of pieces Horizontally
         W_SIZE = int(column.get())
         textToRemove = []
+        imagesToRemoveBackGround = []
 
         # Number of pieces Vertically to each Horizontal
         H_SIZE = int(row.get())
@@ -65,10 +67,21 @@ def sliceImage():
                         for j in textToRemove[::-1]:
                             imgFile += j
                         break
-                savePath = path.replace(imgFile,"")
 
-                cv2.imwrite(savePath + str(ih) + str(iw) + ".png", img)
+                savePath = path.replace(imgFile,"")
+                image = savePath + str(ih) + str(iw) + ".png"
+                imagesToRemoveBackGround.append(image)
+                cv2.imwrite(image, img)
                 img = img2
+
+        # Removing the black background
+        for i in imagesToRemoveBackGround:
+            input = Image.open(i)
+            output_path = i
+            output = remove(input)
+            output.save(output_path)
+        print("Task Finished")
+
     except: pass
 
 #endregion
